@@ -1,0 +1,259 @@
+---
+title: "Data Preprocessing File"
+format: html
+editor: visual
+lang: de
+execute:
+  echo: false
+  warning: false
+knitr:
+  opts_chunk:
+    message: false
+---
+
+```{r}
+### To render, requires data and swissdox folders (with all datasets) in working directory
+
+#packages
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(haven)
+library(swissparl)
+library(readr)
+
+#read data and subset (votes from 2004 to 2023)
+votes = read.csv("data/swissvotes.csv", sep = ";")
+councillors = read_xlsx("data/councillors.xlsx", sheet = 1)
+councillors$Name = word(councillors$Name, 1)
+departments = read_xlsx("data/councillors.xlsx", sheet = 2)
+votes = votes[which(as.Date(votes$datum, format = "%d.%m.%Y") > as.Date("01.01.2004", format = "%d.%m.%Y") &
+                      as.Date(votes$datum, format = "%d.%m.%Y") < as.Date("01.01.2024", format = "%d.%m.%Y")),
+              c(1:3, 9:11, 26, 27, 30, 32, 34, 37, 38, 50, 88:91, 103, 104, 621, 643, 652)]
+
+#Tidy data
+#Variable names
+colnames(votes) = c("id", "date", "title", "link", "date_votes", "type", "department", "p_fc", "bill_id",
+                    "bulletin",
+                    "parliamentary_initiative", "nr_yes", "nr_no", "parl_message", "p_FDP", "p_SP",
+                    "p_SVP", "p_mitte", "p_CVP", "p_BDP", "ads", "adopted", "yes_voteshare")
+#Fix dates
+votes$parl_message = as.Date(as.numeric(votes$parl_message), origin = "1899-12-30")
+votes$date = as.Date(votes$date, format="%d.%m.%Y")
+#Variable for year of vote
+votes$year = format(votes$date, "%Y")
+#Fix bill id's
+votes$bill_id = sprintf('%.3f',(as.numeric(votes$bill_id)))
+votes$bill_id = ifelse(nchar(votes$bill_id) == 5, paste("0", votes$bill_id, sep = ""), votes$bill_id)
+#Merge CVP & Mitte
+votes$p_CVP = ifelse(votes$p_CVP %in% c(9999, NA), votes$p_mitte, votes$p_CVP)
+#Remove initiative with conjoined referendum (two cases)
+votes = votes[-(which(substr(as.character(votes$id), 5, 5) %in% c("1", "3"))),]
+votes$id = round(votes$id)
+#Recode departments
+votes$department = case_match(votes$department, "1" ~ "EDA", "2" ~ "EDI", "3" ~ "EJPD",
+                              "4" ~ "VBS", "5" ~ "EFB", "6" ~ "WBF", "7" ~ "UVEK", "8" ~ "BK")
+#Referendums and initiatives
+votes$popular_initiative = ifelse(votes$type == 3, 1, 0)
+votes$fac_ref = ifelse(votes$type == 2, 1, 0)
+votes$type = case_match(votes$type, 1 ~ "Obligatorisches Refrendum", 2 ~ "Fakultatives Referendum",
+                        3 ~ "Volksinitiative", 4 ~ "Gegenvorschlag")
+#Recode party stances on votes
+votes[, which(colnames(votes) %in% c("p_fc", "p_FDP", "p_SP", "p_SVP", "p_mitte", "p_CVP", "p_BDP"))] =
+  lapply(votes[, which(colnames(votes) %in% c("p_fc", "p_FDP", "p_SP", "p_SVP", "p_mitte", "p_CVP", "p_BDP"))],
+         function(x) {ifelse(x == 1, 1, 0)})
+
+#Merge department heads into votes data
+votes$head = NA
+for (i in 1:length(votes$id)) {
+  votes$head[i] = pull(departments[match(votes$year[i], departments$Jahr),
+                              match(votes$department[i], colnames(departments))])
+}
+#assign correct head for instances of department change during the year
+v0 = votes[grep("/",votes$head),c(which(colnames(votes) == "date"), which(colnames(votes) == "head"))]
+res = as.Date(councillors$Rücktritt[which(substr(as.character(councillors$Rücktritt),1,5)
+                                          != "31.12")], format = "%d.%m.%Y")
+v0$resignation = as.Date(NA, format = "%d.%m.%Y")
+db = grep("/",votes$head)
+for (i in 1:length(v0$date)) {
+  v0$resignation[i] = res[which(format(res, "%Y") ==
+                                  format(v0$date[i], "%Y"))[1]]
+  if (v0$date[i] < v0$resignation[i]) {
+  votes$head[db[i]] = word(v0$head[i], 1)
+  } else {
+  votes$head[db[i]] = word(v0$head[i], 3)  
+  }
+}
+#Merge Councillor data into votes data
+votes$head_party = councillors$Partei[match(votes$head, councillors$Name)]
+votes$head_election = as.Date(councillors$Wahl[match(votes$head, councillors$Name)],
+                             format = "%d.%m.%Y")
+votes$head_resignation = as.Date(councillors$Rücktritt[match(votes$head, councillors$Name)],
+                             format = "%d.%m.%Y")
+votes$head_resignation = case_match(votes$head_resignation,
+                                   NA ~ as.Date("31.12.2030", format ="%d.%m.%Y"),
+                                   .default = votes$head_resignation)
+
+#Campaign intensity: Swissvotes inserate-total 2013-2023; Kriesi 1980-2012. Normalize both, then merge
+votes$ads = ifelse(votes$ads %in% c(".", "0"), NA, log(as.numeric(votes$ads)))
+kr = read_dta("data/agg_raw.dta")[300:676,c(1, 2, 171)]
+kr$id = ifelse(substr(as.character(kr$id), 5, 5) %in% c("1", "3"), NA, round(kr$id))
+votes$kriesi = NA
+for (i in 1:length(votes$id)) {
+  votes$kriesi[i] = kr$kriesi_lnintens[match(votes$id[i], kr$id)]
+}
+nr = function(x) {return((x - min(x, na.rm = T)) / (max(x, na.rm = T) - min(x, na.rm = T)))}
+votes$ads = nr(votes$ads)
+votes$kriesi = nr(votes$kriesi)
+votes$ads = ifelse(is.na(votes$ads), votes$kriesi, votes$ads)
+
+#Councillor's party's vote share in favor of the vote (only Nationalrat), some by hand because no data provided
+load("data/votesparl.RData")
+votes = left_join(votes, bills, join_by(bill_id == bill.id))
+parlvotes = dtvotes[, 7:10]
+parlvotes$vote.decision = case_match(parlvotes$vote.decision, "Yes" ~ 1, "No" ~ 0)
+parlvotes = na.omit(parlvotes)
+parlvotes$name = paste(parlvotes$p.first_name, parlvotes$p.last_name)
+
+members = get_data(table = "MemberCouncilHistory", Language = "DE", silent = T)[,c(4,7,8,22,36)]
+members = members[-which(members$DateLeaving < as.Date("2002-01-01")),]
+members$PartyName = case_match(members$PartyName, "Bürgerlich-Demokratische Partei Schweiz" ~ "BDP",
+                               c("Christlichdemokratische Volkspartei der Schweiz", "Die Mitte") ~ "CVP",
+                               c("FDP.Die Liberalen", "Freisinnig-Demokratische Partei der Schweiz",
+                                 "Liberale Partei der Schweiz", "Liberal-Demokratische Partei") ~ "FDP",
+                               "Schweizerische Volkspartei" ~ "SVP",
+                               "Sozialdemokratische Partei der Schweiz" ~ "SP")
+members = members[which(!is.na(members$PartyName)),]
+members$name = paste(members$FirstName, members$LastName)
+parlvotes = left_join(parlvotes, members[,c(6,4)], join_by(name == name))
+#party switchers / missing / svp-bdp
+parlvotes = parlvotes %>% mutate(PartyName = ifelse(name %in% c("Hansjörg Hassler","Hans Grunder",
+                                                    "Werner Luginbühl", "Lorenz Hess"), "BDP", PartyName))
+parlvotes = parlvotes %>% mutate(PartyName = ifelse(name %in% c("Maria Bernasconi"), "SP", PartyName))
+parlvotes = parlvotes %>% mutate(PartyName = ifelse(name %in% c("Adriano Imfeld"), "CVP", PartyName))
+parlvotes = parlvotes %>% mutate(PartyName = ifelse(name %in% c("Luzi Stamm", "Thomas Müller"), NA, PartyName))
+
+missing_bills = votes[which(votes$n_votes == 0), c(9, 10, 12, 25, 28)]
+missing_bills$head_agree = c(0, 30/33, 31/36, 39/40, 27/28, 1, 3/40, 6/42, 36/41, 42/43, 35/36)
+votes$head_agree = NA
+for (i in 1:length(votes$id)) {
+  if (votes$bill_id[i] %in% parlvotes$pursuit.number) {
+    pv = parlvotes[which(votes$bill_id[i] == parlvotes$pursuit.number &
+                           votes$head_party[i] == parlvotes$PartyName),]
+    votes$head_agree[i] = sum(pv$vote.decision) / length(pv$vote.decision)
+    if (votes$popular_initiative[i] == 1 & votes$p_fc[i] == 0) {
+      votes$head_agree[i] = 1 - votes$head_agree[i]
+    }
+  } else {
+    votes$head_agree[i] = missing_bills$head_agree[which(votes$bill_id[i] == missing_bills$bill_id &
+                                                           votes$nr_yes[i] == missing_bills$nr_yes)]
+  }
+} 
+
+#Merge in difficulty and decision time
+votes_vox = read_xlsx("data/votes_vox.xlsx")[, c(1, 3, 4)]
+votes = left_join(votes, votes_vox, join_by(id == id))
+votes$difficulty = as.numeric(votes$difficulty) / 100
+votes$dec_early = as.numeric(votes$dec_early) / 100
+
+#Ind. variable
+votes$yes_voteshare = votes$yes_voteshare / 100
+votes$fc_voteshare = ifelse(votes$p_fc == 1, votes$yes_voteshare, 1 - votes$yes_voteshare)
+
+#Control variable: national council vote
+votes$nr_yes = as.numeric(votes$nr_yes)
+votes$nr_no = as.numeric(votes$nr_no)
+votes$nr_fc = ifelse(votes$p_fc == 1, votes$nr_yes / (votes$nr_yes + votes$nr_no),
+                     votes$nr_no / (votes$nr_yes + votes$nr_no))
+
+#new variables
+votes$head_seniority = as.numeric(difftime(votes$date, votes$head_election, unit = "weeks")) / 52.25
+votes$department_bill = ifelse(votes$popular_initiative == 0 &
+                                 votes$parliamentary_initiative == 0, 1, 0)
+votes_same_date = votes %>% count(date, head)
+votes$same_date_head = votes_same_date$n[match(paste(votes$date, votes$head),
+                                             paste(votes_same_date$date, votes_same_date$head))]
+
+#Prepare Swissdox API calls (uses python scripts)
+votes$articles = NA
+votes_dox = votes[,c(1:3,27)]
+votes_dox$datefrom = as.character(votes_dox$date - 70)
+votes_dox$dateto = as.character(votes_dox$date - 1)
+votes_dox$date = as.character(votes_dox$date)
+
+dox_parameters = ""
+for (i in 1:length(votes_dox$id)) {
+for (j in 1:6) {
+dox_parameters = append(dox_parameters, votes_dox[i,j])
+    }
+  }
+dox_parameters = dox_parameters[-1]
+write(dox_parameters, "swissdox/dox_parameters.txt")
+#Run query.py, after all downloads finished, run status.py
+
+```
+
+```{r}
+#Download swissdox datasets
+dlu = t(read.delim("swissdox/dox_status.txt", sep = ",", header = F))
+dlu = dlu[which(grepl("name:", dlu) | grepl("downloadUrl:", dlu))]
+df_download = data.frame(matrix(ncol = 2, nrow = length(dlu)/2))
+colnames(df_download) = c("id", "link")
+for (i in 1:(length(dlu)/2)) {
+  df_download[i,1] = dlu[seq(from = 1, to = (length(dlu) - 1), by = 2)[i]]
+  df_download[i,2] = dlu[(seq(from = 1, to = (length(dlu) - 1), by = 2)[i]) + 1]
+}
+df_download$id = as.numeric(substr(df_download$id, 7, 10))
+df_download$link = substr(df_download$link, 15, nchar(df_download$link))
+df_download$filename = substr(df_download$link, 49, nchar(df_download$link)-3)
+df_download = df_download %>% arrange(id)
+write(df_download$id, "swissdox/dox_ids.txt", ncolumns = 1)
+write(df_download$link, "swissdox/dox_links.txt")
+cat("Unfinished downloads:", length(which(df_download$link == "null")))
+#Run download.py
+
+```
+
+```{r}
+#check if any missing datasets, run queries again
+mis = votes$id[which(!(votes$id %in% df_download$id))]
+if (length(mis) > 0) {
+  indices = c()
+  for (i in 1:length(mis)) {
+    j = which(dox_parameters == as.character(mis[i]))
+    indices = append(indices, j:(j+5))
+  }
+  dox_parameters = dox_parameters[indices]
+  write(dox_parameters, "swissdox/dox_parameters.txt")
+}
+#run python scripts and previous chunk again
+
+```
+
+```{r}
+#Read in swissdox datasets and calculate number of articles per vote
+all_articles = data.frame(matrix(ncol = 8, nrow = 0))
+colnames(all_articles) = c("id", "medium_code", "medium_name", "head", "subhead", "content", "voteid", "votetitle")
+
+fil = list.files("swissdox")[grepl(".tsv", list.files("swissdox"))]
+
+for (i in substr(fil, 1, 3)) {
+  t = read.table(file = paste("swissdox/", i, ".tsv", sep = ""), sep = "\t", header = T, quote = "", fill = T)
+  t = t[which(!duplicated(t$content) & t$content != ""),]
+  votes$articles[which(as.character(votes$id) == i)] = length(t$id)
+  t$voteid = rep(as.numeric(i))
+  t$votetitle = votes$title[which(as.character(votes$id) == i)]
+  all_articles = rbind(all_articles, t)
+}
+
+```
+
+```{r}
+#Save data set and articles
+votes = votes[,c(1:3,5:8,21,23,24,26:28,33:41)]
+votes = votes %>% select(id, fc_voteshare, head_agree, nr_fc, type, ads, difficulty,
+                         head_seniority, articles, type, department, everything())
+save(votes, file = "data/votes_final.rds")
+save(all_articles, file = "data/swissdox_articles.rds")
+```

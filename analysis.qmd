@@ -1,0 +1,184 @@
+---
+title: "Selektives Engagement? Der Effekt einzelner Bundesrät:innen auf Abstimmungsergebnisse"
+subtitle: "Forschungsseminar Abstimmungsforschuhng in der Schweiz"
+author:
+  - name: Lucas Moser
+    affiliation: 18-739-763
+lang: en
+date: today
+date-format: "D. MMMM YYYY"
+format: 
+  pdf:
+    toc-title: Table of contents
+    toc: true
+    toc-depth: 2
+    documentclass: scrreprt
+    mainfont: "Times New Roman"
+    fig-pos: "h"
+    tbl-pos: "h"
+execute:
+  echo: false
+  warning: false
+knitr::opts_chunk(message: FALSE, set(dev = 'eps'))
+include-in-header:
+  text: |
+   \usepackage{authblk}
+bibliography: references.bib
+---
+
+# Einführung
+
+
+# Theorie
+
+
+# Daten und Methode
+
+
+```{r}
+#packages
+library(dplyr)
+library(ggeffects)
+library(huxtable)
+library(ggplot2)
+library(ggrepel)
+library(vtable)
+
+party_colors = c("SP" = "#F0554D", "CVP" = "#D6862B", "BDP" = "#E6C820", "SVP" = "#4B8A3E", "FDP" = "#3872B5")
+
+load("data/votes_final.rds")
+votes = na.omit(votes)   #two votes belonging to Chancellery, two votes without National Council vote
+```
+
+```{r}
+ggplot(data = votes, aes(x = date, y = articles, color = ifelse(head_agree > 0.5, "Ja", "Nein"), 
+                         label = ifelse(articles > 100, head, ""))) + geom_jitter() + geom_text_repel(size = 3) +
+  labs(color = "Kongruenz (über 50%)", x = "Jahr", y = "Anzahl Zeitungsartikel",
+       title = "Abbildung X: Volksabstimmungen nach Anzahl Zeitungsartikeln")
+
+#ggplot(data = votes, aes(y = articles, x = head_agree)) + geom_point() + geom_smooth(method = "lm")
+
+ggplot(data = votes, aes(y = articles, x = head_party, label = ifelse(articles > 100, head, ""))) +
+  geom_point() + geom_smooth(method = "lm") + geom_text_repel()
+
+
+votes %>% group_by(head_party) %>% summarise(Mean = mean(articles))
+
+fit_articles1 = lm(data = votes, articles ~ head_agree)
+fit_articles2 = lm(data = votes, articles ~ head_agree + ads)
+
+huxreg(fit_articles1)
+summary(fit_articles2)
+
+ggfit_articles = ggpredict(fit_articles2, terms = "head_agree")
+ggplot(ggfit_articles, aes(x = x, y = predicted))+
+  geom_line() +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2) + 
+  #scale_y_continuous(labels = scales::percent) +
+  xlab("Department Head Agreement") + ylab("Number of Newspaper Articles")
+```
+
+```{r}
+#Descriptive Statistics
+desc_table = st(votes[,2:9], summ = c(N ='notNA(x)','mean(x)','sd(x)','min(x)','max(x)'),
+   summ.names = c("N", "Mean", "Std.Dev.", "Min", "Max"), title = "Tabelle X: Deskriptive Statistiken",
+   labels = c("Stimmanteil Bundesratsseite", "Kongruenz", "Stimmanteil Nationalrat", "Vorlagen-Typ",
+              "Inserate", "Komplexität", "Dienstalter", "Zeitungsartikel"))
+
+ggplot(data = votes, aes(x = nr_fc, y = fc_voteshare, color = head_agree)) + geom_point() +
+  #geom_smooth(method = lm) +
+  scale_x_continuous(limits = c(0.2,1), labels = scales::percent) +
+  scale_y_continuous(limits = c(0.2,1), labels = scales::percent) +
+  scale_color_continuous(low = "brown2", high = "chartreuse4", labels = scales::label_percent()) +
+  labs(title = "Abbildung X: Stimmanteile der Bundesrratsseite in Nationalrats- und\nVolksabstimmung nach Kongruenz",
+       x = "Stimmanteil Nationalrats-Schlussabstimmung", y = "Stimmanteil Volksabstimmung", color = "Kongruenz")
+
+```
+
+
+```{r}
+#Regression
+
+
+#Basic model
+fit0 = lm(data = votes,  fc_voteshare ~ head_agree)
+summary(fit0)   
+#p = 0.069, negative coefficient, agreement yields -4 percentage points of the vote
+
+
+
+#With control for national council vote
+fit1 = lm(data = votes,  fc_voteshare ~ head_agree + nr_fc)
+summary(fit1)
+#p = 0.032, still -4%
+
+
+#Does the effect differ depending on the department head('s party)?
+fit1a = lm(data = votes,  fc_voteshare ~ head_agree * head_party +  nr_fc)
+summary(fit1a)
+ggfit1a = ggpredict(fit1a, terms = c("head_agree [0, 0.25, 0.5, 0.75, 1]", "head_party"))
+ggplot(ggfit1a, aes(x = x, y = predicted, color = group, )) +
+  geom_line() +
+  scale_color_manual("Partei", values = party_colors) +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.05) + 
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_continuous(labels = scales::percent) +
+  labs(title = "Abbildung XXX", x = "Kongruenz", y = "Stimmanteil BR-Seite") + theme_minimal()
+#Effekt Null (SP) bis gering negativ (Rest), CI's sehr gross
+
+fit1b = lm(data = votes,  fc_voteshare ~ head_agree * head +  nr_fc)
+summary(fit1b)
+ggfit1b = ggpredict(fit1b, terms = c("head_agree [0, 0.25, 0.5, 0.75, 1]", "head"))
+pred = cbind(ggfit1b[which(ggfit1b$x == 0),], ggfit1b[which(ggfit1b$x == 1),])
+colnames(pred)[c(6,8)] = c("head", "predicted1")
+pred$diff = pred$predicted1 - pred$predicted
+pred$conf = pred$conf.high - pred$conf.low
+pred$head = as.character(pred$head)
+pred = pred[order(pred$head), c(6,13,14)]
+ct = votes %>% group_by(head) %>% summarise(n = n())
+pred$n_votes = ct$n
+pred = pred[which(pred$n_votes > 9),]
+#Nur Berset und KKS positiver Effekt (5%), Rest wenig bis stark (Couchepin & Maurer -20%) negativ, aber CIs (15-25%) bei allen grösser als Effekt
+
+
+#Interactions
+fit2 = lm(data = votes,  fc_voteshare ~ head_agree * fac_ref  +  nr_fc)
+fit3 = lm(data = votes,  fc_voteshare ~ head_agree * difficulty +  nr_fc)
+fit4 = lm(data = votes,  fc_voteshare ~ head_agree * ads +  nr_fc)
+fit5 = lm(data = votes,  fc_voteshare ~ head_agree * head_seniority +  nr_fc)
+huxreg(fit0, fit1, fit2, fit3, fit4, fit5, error_format = "({p.value})")
+#Fak Ref wie erwartet negativ, aber p = 0.29
+#Komplexität negativ, p = 0.32
+#Ads wie erwartet negativ, und knapper nichtsignifikant p = 0.088
+
+
+#Nur fakultative Referenden
+fit2a = lm(data = votes[which(votes$fac_ref == 1),],  fc_voteshare ~ head_agree + nr_fc)
+summary(fit2a)
+#Immer noch negativ und schlechterer p = 0.26
+
+#Nur vorlagen mit überdurchschnittlich vielen Ads
+#ggplot(data = votes, aes(x = ads)) + geom_density()
+fit4a = lm(data = votes[which(votes$ads > mean(votes$ads, na.rm = T)),],  fc_voteshare ~ head_agree + nr_fc)
+summary(fit4a)
+#Still negative and p = 0.018
+
+#Nur BR-Vorlagen
+fit2b = lm(data = votes[which(votes$department_bill == 1),],  fc_voteshare ~ head_agree + nr_fc)
+summary(fit2b)
+#Positive but not significant p = 0.62
+
+```
+
+
+
+# Resultate und Diskussion
+```{r}
+
+```
+
+
+# Fazit
+
+
+# Quellen
