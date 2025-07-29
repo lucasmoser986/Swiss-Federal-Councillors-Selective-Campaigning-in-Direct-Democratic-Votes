@@ -1,21 +1,22 @@
 ---
-title: "Selektives Engagement? Der Effekt einzelner Bundesrät:innen auf Abstimmungsergebnisse"
-subtitle: "Forschungsseminar Abstimmungsforschuhng in der Schweiz"
-author:
-  - name: Lucas Moser
-    affiliation: 18-739-763
-lang: en
+title: "Selektives Engagement? Der Einfluss einzelner Bundesrät:innen auf Abstimmungsergebnisse"
+subtitle: "Forschungsseminar Abstimmungsforschung in der Schweiz (Dozent Dr. Thomas Milic, HS 2025, Universität Zürich) (2828 Wörter)"
+author: Lucas Moser (18-739-763)
+lang: de
 date: today
 date-format: "D. MMMM YYYY"
 format: 
   pdf:
-    toc-title: Table of contents
+    toc-title: Inhaltsverzeichnis
     toc: true
     toc-depth: 2
     documentclass: scrreprt
     mainfont: "Times New Roman"
     fig-pos: "h"
     tbl-pos: "h"
+    linestretch: 1.5
+header-includes:
+    - \usepackage[labelformat=empty]{caption}
 execute:
   echo: false
   warning: false
@@ -23,19 +24,75 @@ knitr::opts_chunk(message: FALSE, set(dev = 'eps'))
 include-in-header:
   text: |
    \usepackage{authblk}
-bibliography: references.bib
 ---
 
 # Einführung
 
+Der Bundesrat ist ein zentraler Akteur in der Schweizerischen direkten Demokratie. Er erarbeitet Gesetzes- und Verfassungsänderungen, über die in Referenden abgestimmt wird, legt fest, an welchen Daten über welche Vorlagen abgestimmt wird, informiert die Stimmbevölkerung zu den Inhalten der Vorlagen und gibt eigene Stimmempfehlungen ab. Darüber hinaus gilt der Bundesrat auch im gesamten politischen System der Schweiz als einer der wichtigsten Akteure, wurde gleichzeitig aber in der Politikwissenschaft bisher eher wenig untersucht, verglichen mit dem Schweizer Parlament und Regierungen anderer Länder. Die bestehende Literatur befasst sich vor allem mit der Wahl und Zusammensetzung des Bundesrats (Vatter 2020). Dies liegt wahrscheinlich vor allem auch daran, dass über die internen Prozesse des Bundesrats wenig bekannt ist. Die einzelnen Bundesrät:innen vertreten die gegen aussen die Meinung des Kollegiums und lassen sowohl eigene Meinung als auch interne Uneinigkeiten, Diskussionen und Kompromisse hinter verschlossener Tür (Linder und Mueller 2017: 280f). Somit wissen wir wenig über das Wirken von einzelnen Bundesrät:innen, beispielsweise in Abhängigkeit von ihrer Parteizugehörigkeit.
 
-# Theorie
+Das Ziel der vorliegenden Arbeit ist es, die bestehende Literatur zu erweitern, indem der Einfluss der einzelnen Bundesrät:innen auf Volksabstimmungen untersucht wird. Konkret formuliere ich folgende Fragestellung: Beeinflussen die persönlichen Meinungen der Bundesrät:innen zu Abstimmungsvorlagen ihr Engagement im Abstimmungskampf und damit die Abstimmungsresultate?
 
+Ich analysiere den Effekt der Kongruenz (Übereinstimmung der persönlichen Meinung einer Bundesrätin mit der des Gesamtbundesrats) auf die mediale Berichterstattung (über Bundesrät:innen) und auf Volksabstimmungsergebnisse. Ich finde keinen signifikanten Kongruenz-Effekt. Selektives Engagement der Bundesrät:innen in Abstimmungskämpfen - sollte es dennoch existieren - wirkt sich nicht systematisch auf Abstimmungsergebnisse oder auf die mediale Berichterstattung aus.
+
+# Theorie und Hypothesen
+
+Wie eingangs beschrieben ist der Bundesrat vielseitig an direktdemokratischen Prozessen beteiligt. Im Wahlkampf selbst tut er dies durch das Bundesbüchlein, die Medienorientierung zu Beginn des Wahlkampfs und durch öffentliche Auftritte an Veranstaltungen oder in Radio- und TV-Sendungen (AG KID 2001). Das Bundesbüchlein erklärt die Inhalte der Vorlagen, sowie die Argumente des Bundesrats und (in weniger prominenter Stellung) der Gegenseite. Es wird von einer Mehrheit der Stimmenden genutzt und seine Nutzung erhöht die Erfolgschancen des Bundesrats im Abstimmungskampf leicht (Milic et al. 2014). Die Medienorientierung dient ebenfalls der Erklärung des Inhalts der Vorlage und der Argumente des Bundesrats. Die Medien schenken ihr grosse Aufmerksamkeit und geben ihrem Publikum die Argumente des Bundesrats wieder. Zuletzt kann durch Auftritte an Veranstaltungen, die in lokalen Medien Beachtung finden, und an TV-Sendungen mit Entertainment-Charakter (z.B. Arena auf SRF) ein breiteres Publikum, beispielsweise politisch weniger interessierte Bürger:innen, erreicht werden (AG KID 2001: 35-41).
+
+Die Forschung zur Käuflichkeit von Abstimmungen in der Schweiz hat gezeigt, dass Abstimmungskampagnen einen Effekt auf Abstimmungsresultate haben (Hertig 1982, Bützer und Marquis 2002, Kriesi 2009, Weber 2012, Jacques et al. 2022). Ich erwarte, dass dies auch auf das Wahlkampf-Engagement des Bundesrats zutrifft, trotz des Fakts, dass der Bundesrat keine Abstimmungswerbung kaufen darf (Milic et al. 2017: 280).
+
+Das grösste Potenzial für Engagement und Einflussnahme hat jeweils derjenige Bundesrat, der dem Departement vorsteht, das für die Abstimmungsvorlage zuständig ist. Das federführende Departement verfasst den Text für das Bundesbüchlein (welcher vom Gesamtbundesrat abgesegnet wird) und der zuständige Bundesrat nimmt an der Medienorientierung und an den weiteren öffentlichen Auftritten teil. Bei thematischen Überschneidungen mit anderen Departementen nehmen aber oftmals auch weitere Bundesrät:innen an der Medienorientierung und/oder weiteren öffentlichen Auftritten teil (AG KID 2001).
+
+Die zuständige Bundesrätin muss im Abstimmungskampf zwar angesichts des Kollegialitätsprinzips jeweils die Meinung des Gesamtbundesrats vertreten, sie kann über die Stärke ihres Engagements aber selbst entscheiden. Wenn ihre persönliche Meinung mit der des Bundesrats übereinstimmt (nachfolgend Kongruenz genannt), wird sie sich wahrscheinlich mehr engagieren, beispielsweise durch eine grössere Zahl an öffentlichen Auftritten oder indem sie (beziehungsweise ihr Departement) mehr Ressourcen und Mühe in das Finden und Kommunizieren von Argumenten gibt. Wenn sie mit dem Bundesrat nicht übereinstimmt (nachfolgend Inkongruenz genannt), engagiert sie sich wahrscheinlich weniger intensiv oder versucht im Extremfall vielleicht gar die Bundesratsseite im Wahlkampf zu sabotieren. Blum (2004) argumentiert, dass aus Inkongruenz zwischen zuständiger Bundesrätin und Gesamtbundesrat ein zurückhaltender und eventuell widersprüchlicher Diskurs im Abstimmungskampf resultiert.
+
+**H1 (selektives Engagement):** Unterstützt der zuständige Bundesrat oder die zuständige Bundesrätin für eine Abstimmungsvorlage die Position des Gesamtbundesrats persönlich (Kongruenz), so engagiert er oder sie sich mehr im Abstimmungskampf.
+
+Zwei Entwicklungen in jüngerer Zeit machen die Existenz des Effekts des selektiven Engagements wahrscheinlicher: Zum einen hat Parteipolitik stärker in den Bundesrat einzudringen begonnen, markiert durch den Einzug Christoph Blochers in den Bundesrat, was den konsensuellen Umgang innerhalb des Gremiums schwächt (Vatter 2020: 287- 289). Zum anderen führt die stetig zunehmende Arbeitslast bei gleichbleibender Anzahl Bundesrät:innen und Departemente zu zunehmender Departementalisierung. Die einzelnen Bundesrät:innen und Departemente erhalten mehr Macht, beziehungsweise Freiheit, in der Führung ihrer Geschäfte, da der Gesamtbundesrat nicht mehr über alles diskutieren kann (Linder und Mueller 2017: 284f).
+
+Da sich das Engagement des zuständigen Bundesrats über viele Vorlagen hinweg nur schwer genau messen lässt, formuliere ich zwei weitere Hypothesen betreffend der Auswirkung des selektiven Engagements auf die mediale Berichterstattung und auf die Abstimmungsresultate.
+
+**H1a (Berichterstattung):** Unterstützt der zuständige Bundesrat oder die zuständige Bundesrätin für eine Abstimmungsvorlage die Position des Gesamtbundesrats persönlich (Kongruenz), so engagiert er oder sie sich mehr im Abstimmungskampf, was dazu führt, dass er oder sie öfter in der medialen Berichterstattung erwähnt wird.
+
+**H1b (Abstimmungsergebnisse):** Unterstützt der zuständige Bundesrat oder die zuständige Bundesrätin für eine Abstimmungsvorlage die Position des Gesamtbundesrats persönlich (Kongruenz), so engagiert er oder sie sich mehr im Abstimmungskampf, was dazu führt, dass die Bundesratsseite mehr Stimmen erhält.
+
+Nachfolgend möchte ich auf drei vorlagenspezifische Faktoren eingehen, die den Effekt des selektiven Engagements, sollte er denn existieren, wahrscheinlich beeinflussen.
+
+Mit der Medienorientierung zu Beginn des Wahlkampfs kann der Bundesrat normalerweise starken Einfluss auf das (mediale) Framing der Vorlage nehmen (AG KID 2001: 21). Eine Ausnahme bilden aber fakultative Referenden, bei denen das Referendums-Komitee das Framing während der Phase der Unterschriftensammlung bereits prägen kann. Die Volksabstimmung findet dann jeweils kurz darauf statt (im Unterschied zu Volksinitiativen, die meist erst mehrere Jahre nach Einreichung zur Abstimmung kommen).
+
+**H2 (Vorlagentyp):** Der Effekt des selektiven Engagements ist schwächer bei fakultativen Referenden.
+
+Gemäss Milic (2012) ist der Einfluss der Bundesrats-Parole auf das Abstimmungsergebnis von der Komplexität der Vorlage abhängig. Dasselbe gilt wahrscheinlich auch für den Einfluss des Engagements des Bundesrats. Bei komplexeren Vorlagen kann der Bundesrat durch gutes Informieren und Argumentieren mehr erreichen als bei einfacheren Vorlagen, bei denen mehr Stimmende im Vornherein bereits gefestigte Meinungen haben.
+
+**H3 (Komplexität):** Der Effekt des selektiven Engagements ist stärker bei komplexeren Abstimmungsvorlagen.
+
+Der Einfluss des Bundesrats im Abstimmungskampf hängt auch davon ab, wie intensiv die restlichen Akteure (Parteien, Verbände, Komitees) Abstimmungskampf betreiben. Der Bundesrat, der sein Engagement nicht ins Unermessliche steigern kann, wird in einem Abstimmungskampf mit viel Propaganda wahrscheinlich weniger wahrgenommen.
+
+**H4 (Kampagnenintensität):** Der Effekt des selektiven Engagements ist schwächer, je intensiver die beiden Lager Abstimmungskampf führen.
+
+Zuletzt erwarte ich, dass sich das Dienstalter der zuständigen Bundesrätin auf ihr Engagement bzw. auf die Wirksamkeit ihres Engagements auswirkt. Mit zunehmendem Dienstalter wissen Bundesrät:innen wahrscheinlich besser, wie sie die Ressourcen ihres Departements für Dinge einsetzen können, die ihnen persönlich wichtiger sind. Zudem spüren sie mit zunehmendem Dienstalter womöglich auch weniger Druck, der Kollegialität folgeleisten zu müssen.
+
+**H5 (Dienstalter):** Der Effekt des selektiven Engagements ist stärker, je höher das Dienstalter des zuständigen Bundesrats oder der zuständigen Bundesrätin ist.
 
 # Daten und Methode
 
+Aufgrund des Kollegialitätsprinzips kennen wir die persönlichen Meinungen der Bundesrät:innen zu den Abstimmungsvorlagen nicht, wir können sie aber anhand der Parteizugehörigkeit abschätzen. Je geschlossener eine Partei hinter einer Vorlage steht, desto höher die Wahrscheinlichkeit, dass sie ihr Bundesrat auch unterstützt. Deshalb definiere ich als unabhängige Variable (die die Kongruenz misst) den Anteil der Nationalrät:innen der Partei des zuständigen Bundesrats, die in der Schlussabstimmung zur Abstimmungsvorlage gemäss der Empfehlung des Bundesrats abgestimmt haben. Somit nimmt die Kongruenz Werte zwischen 0% (der zuständige Bundesrat ist sehr wahrscheinlich gegen die Vorlage) und 100% (der zuständige Bundesrat ist sehr wahrscheinlich für die Vorlage) an.
 
-```{r}
+Die Abschätzung mittels Parteizugehörigkeit wirft Fragen auf für die Bundesrät:innen Samuel Schmid und Eveline Widmer-Schlumpf, die jeweils am Ende, respektive zu Beginn ihrer Amtszeit von der SVP zur BDP wechselten. Eveline Widmer-Schlumpf trat 2008 in den Bundesrat ein, ihre Zustimmung wird anhand der späteren Mitglieder der BDP-Fraktion (gegründet im März 2009) gemessen. Samuel Schmid trat kurz vor seinem Rücktritt 2008 aus der SVP aus. Er verbrachte seine gesamte Amtszeit als Vorsteher des VBS, das während seiner Amtszeit nur Abstimmungen über Militärvorlagen bestreiten musste (Swissvotes 2025). Ich gehe davon aus, dass sich seine Meinung in diesen Fragen mit der der SVP-Parlamentarier:innen deckte, deshalb wird er als «normaler» SVP-Bundesrat behandelt.
+
+Dem Bundesratslexikon (Altermatt 2019) kann entnommen werden, welche Bundesrät:innen in welchen Jahren welchen Departementen vorstanden und das DemocraSci Project (Brandenberger 2025) liefert Daten zum Stimmverhalten der Nationalrät:innen.
+
+Die abhängige Variable für die Berichterstattung ist die Anzahl Zeitungsartikel, die in den 10 Wochen vor der Abstimmung erschienen sind und sowohl die Abstimmung als auch die zuständige Bundesrätin erwähnen. Um dem Umstand Rechnung zu tragen, dass Bundesrät:innen sich auch an öffentlichen Veranstaltungen engagieren können, die nur lokal wahrgenommen werden, berücksichtige ich für diese Variable jeweils eine Regionalzeitung pro Kanton - sofern eine verfügbar ist. Ich rufe die Zeitungsartikel mittels Swissdox\@LiRI (Bubenhofer et al. 2025) ab, ein Tool welches Forschenden Zugriff auf die Schweizer Mediendatenbank gibt. Es sind Regionalzeitungen aus 18 Kantonen verfügbar, für die Auswahl orientiere ich mich an den Zeitungen, welche von APS für ihre Auswertungen von Abstimmungsinseraten verwendet werden (Année Politique Suisse 2016; eine Liste der von mir berücksichtigten Zeitungen kann in der Appendix aufgefunden werden). Ich zähle für jede Vorlage die Anzahl Zeitungsartikel, welche das Stichwort "Abstimmung" (oder "votation") sowie den Nachnamen der zuständigen Bundesrätin beinhalten.
+
+Die abhängige Variable für die Abstimmungsergebnisse ist der Anteil Stimmen für die Bundesratsseite in der Volksabstimmung. Eine bessere Messung des Effekts des bundesrätlichen Engagements wäre die Meinungsänderung im Stimmvolk zwischen vor der Medienorientierung durch den Bundesrat und dem Abstimmungssonntag. Der Erhebungszeitraum der ersten SRG-Vorbefragung überschneidet sich aber in der Regel mit der Medienorientierung, daher liegen keine Daten vor zur Prädisposition der Stimmbevölkerung vor dem ersten Wahlkampfauftritt des Bundesrats vor.
+
+Der Datensatz von Swissvotes (2025) enthält die Resultate, den Vorlagentyp und das zuständige Departement für alle Volksabstimmungen. Ich analysiere die Abstimmungen von 2003 bis 2023. In diesem Zeitraum gibt es zwei Vorlagen, für die die Bundeskanzlei zuständig war, und zwei Vorlagen, für die es keine Abstimmung im Nationalrat gab. Diese vier Vorlagen schliesse ich aus der Analyse aus. Eine Abstimmungsvorlage besteht aus Volksinitiative, direktem Gegenvorschlag und Stichfrage. Für diese schliesse ich nur die Volksinitiative ein. Insgesamt beinhaltet die Analyse 157 Abstimmungsvorlagen.
+
+Teilnehmende der VOX-Nachbefragung (gfs.bern 2025) geben an, als wie komplex sie die Vorlage empfunden haben (auf einer Skala von 1 bis 10). Der durchschnittlich angegebene Wert dient als Messung für die Komplexität der Vorlage. Die Kampagnenintensität wird anhand der Anzahl Inserate in Printmedien gemessen. Der Swisvotes-Datensatz beinhaltet einen solchen Inidkator für die Abstimmungen seit 2013. Für die Abstimmungen von 2003 bis 2012 verwende ich den Kriesi-Indikator (Kriesi 2009). Da ich zwei unterschiedliche Indikatoren "vermische", normalisiere ich jeweils beide Indikatoren.
+
+Tabelle A1 in der Appendix zeigt deskriptive Statistiken zu allen Variablen. Spezielle Aufmerksamkeit verdient die Verteilung der Kongruenz-Werte, welche in Abbildung 1 auf der nächsten Seite dargestellt ist. Kongruenz kommt viel häufiger vor als Inkongruenz. In 60% der Fälle liegt vollständige Kongruenz vor (Kongruenz-Wert von 100%) und in 80% der Fälle liegt der Kongruenz-Wert über 50%. Inkongruenz ist seltener und kommt fast ausschliesslich bei Bundesrät:innen der SP und SVP vor. Bei der CVP (später Mitte), BDP und FDP kommen Kongruenz-Werte von unter 50% insgesamt nur dreimal vor. Angesichts der Tatsache, dass die SP und SVP die Polparteien sind, ist diese Verteilung aber nicht überraschend. Da die Kongruenz-Variable nahezu binär ist, werde ich im Weiteren vom Vorhandensein von Kongruenz (Werte von und nahe 100%) oder von Inkongruenz (Werte von und nahe 0%) sprechen, ohne die stetige Skala der Variable zu beachten.
+
+Ich analysiere den Effekt der Kongruenz des zuständigen Bundesrats auf die mediale Berichterstattung und auf das Abstimmungsergebnis mittels OLS. Um den Einfuss der Kongruenz genauer zu messen, kontrolliere bei beiden Analysen jeweils für einen Faktor, der die abhängige Variable stark beeinflusst. Bei der Berichterstattung kontrolliere ich für die Kampagnenintensität und beim Abstimmungsergebnis für den Stimmanteil für die Bundesratsseite in der Schlussabstimmung zur Vorlage im Nationalrat.
+
+```{r, fig.height=5, fig.width=8}
 #packages
 library(dplyr)
 library(ggeffects)
@@ -44,141 +101,201 @@ library(ggplot2)
 library(ggrepel)
 library(vtable)
 
-party_colors = c("SP" = "#F0554D", "CVP" = "#D6862B", "BDP" = "#E6C820", "SVP" = "#4B8A3E", "FDP" = "#3872B5")
+party_colors = c("SP" = "#F0554D", "CVP" = "#D6862B", "BDP" = "#E6C820",
+                 "SVP" = "#4B8A3E", "FDP" = "#3872B5")
 
 load("data/votes_final.rds")
-votes = na.omit(votes)   #two votes belonging to Chancellery, two votes without National Council vote
+votes = na.omit(votes)
+parties = c("SP", "CVP", "BDP", "FDP", "SVP")
+votes$head_party = factor(votes$head_party, levels = parties)
+#Erklärung Variablennamen
+#fc_voteshare: Stimmanteil Bundesratsseite in Volksabstimmung
+#head_agree: Kongruenz
+#nr_fc: Stimmanteil Bundesratsseite in Nationalrats-Schlussabstimmung
+#ads: Kampagnenintensität
+#difficulty: Komplexität
+
+#Verteilung der (In-)Kongruenzwerte nach Partei
+#table(votes$head_agree < 0.5, votes$head_party)
+plot0 = ggplot(data = votes, aes(x = head_party, y = head_agree, color = head_party)) +
+  geom_jitter() + scale_color_manual(values = party_colors) + labs(title = "Abbildung 1: Verteilung der Kongruenz-Werte nach Partei des zuständigen Bundesrats", x = "Partei",
+                                                                   y = "Kongruenz-Wert") +
+  scale_y_continuous(labels = scales::label_percent()) + theme(legend.position = "none")
+plot0
 ```
 
 ```{r}
-ggplot(data = votes, aes(x = date, y = articles, color = ifelse(head_agree > 0.5, "Ja", "Nein"), 
-                         label = ifelse(articles > 100, head, ""))) + geom_jitter() + geom_text_repel(size = 3) +
-  labs(color = "Kongruenz (über 50%)", x = "Jahr", y = "Anzahl Zeitungsartikel",
-       title = "Abbildung X: Volksabstimmungen nach Anzahl Zeitungsartikeln")
+#Plot articles per vote chronologically
+plot1 = ggplot(data = votes, aes(x = date, y = articles, color = head_agree, 
+                         label = ifelse(articles > 100, head, ""))) +
+  geom_jitter() + geom_text_repel(size = 3) +
+  labs(color = "Kongruenz", x = "Datum", y = "Anzahl Zeitungsartikel",
+       title = "Abbildung 2: Volksabstimmungen nach Anzahl Zeitungsartikeln, die den\nzuständigen Bundesrat erwähnen") +
+  scale_color_continuous(low = "brown2", high = "chartreuse4",
+                         labels = scales::label_percent())
 
-#ggplot(data = votes, aes(y = articles, x = head_agree)) + geom_point() + geom_smooth(method = "lm")
+#Durchschnittliche Anzahl Artikel pro BR
+articles_per_head = votes %>% group_by(head) %>% summarise(average = mean(articles))
 
-ggplot(data = votes, aes(y = articles, x = head_party, label = ifelse(articles > 100, head, ""))) +
-  geom_point() + geom_smooth(method = "lm") + geom_text_repel()
+#Regression
+fit_articles = lm(data = votes, articles ~ head_agree + ads)
 
+#Ohne Blocher (Outlier)
+fit_articles2 = lm(data = votes[which(votes$head != "Blocher"),], articles ~ head_agree + ads)
 
-votes %>% group_by(head_party) %>% summarise(Mean = mean(articles))
+#Tabelle
+table1 = huxreg(fit_articles, fit_articles2, bold_signif = 0.05, number_format = "%.2f",
+                error_pos = "same", statistics = c(N = "nobs", "logLik", "AIC")) %>%
+  insert_row("zuständige Bundesrätin erwähnen", fill = "", colspan = 3) %>%
+  insert_row("Tabelle 1: Einfluss von Kongruenz auf Anzahl Zeitungsartikel, die die",
+             fill = "", colspan = 3) %>%
+  set_bottom_border(row = 2, col = c(1:3))
+table1[3,2:3] = c("Alle Abstimmungen", "Ohne Blochers Abstimmungen")
+table1[5:6,1] = c("Kongruenz", "Kampagnenintensität")
 
-fit_articles1 = lm(data = votes, articles ~ head_agree)
-fit_articles2 = lm(data = votes, articles ~ head_agree + ads)
-
-huxreg(fit_articles1)
-summary(fit_articles2)
-
-ggfit_articles = ggpredict(fit_articles2, terms = "head_agree")
-ggplot(ggfit_articles, aes(x = x, y = predicted))+
-  geom_line() +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2) + 
-  #scale_y_continuous(labels = scales::percent) +
-  xlab("Department Head Agreement") + ylab("Number of Newspaper Articles")
+#Berichterstattung Juni 2006 (Schengen, eingetragene Partnerschaft)
+load("data/swissdox_articles.rds")
+articles_blocher = all_articles[which(all_articles$voteid == 518),4:6]
+articles_blocher$schengen = ifelse(grepl("Schengen", articles_blocher$content), 1, 0)
+articles_blocher$partnerschaft = ifelse(grepl("Partnerschaft", articles_blocher$content) |
+                                        grepl("partenariat", articles_blocher$content) , 1, 0)
 ```
 
 ```{r}
-#Descriptive Statistics
-desc_table = st(votes[,2:9], summ = c(N ='notNA(x)','mean(x)','sd(x)','min(x)','max(x)'),
-   summ.names = c("N", "Mean", "Std.Dev.", "Min", "Max"), title = "Tabelle X: Deskriptive Statistiken",
-   labels = c("Stimmanteil Bundesratsseite", "Kongruenz", "Stimmanteil Nationalrat", "Vorlagen-Typ",
-              "Inserate", "Komplexität", "Dienstalter", "Zeitungsartikel"))
-
-ggplot(data = votes, aes(x = nr_fc, y = fc_voteshare, color = head_agree)) + geom_point() +
-  #geom_smooth(method = lm) +
+#Plot Stimmanteile NR und Volk, nach Kongruenz
+plot2 = ggplot(data = votes, aes(x = nr_fc, y = fc_voteshare, color = head_agree)) +
+  geom_point() +
   scale_x_continuous(limits = c(0.2,1), labels = scales::percent) +
   scale_y_continuous(limits = c(0.2,1), labels = scales::percent) +
-  scale_color_continuous(low = "brown2", high = "chartreuse4", labels = scales::label_percent()) +
-  labs(title = "Abbildung X: Stimmanteile der Bundesrratsseite in Nationalrats- und\nVolksabstimmung nach Kongruenz",
-       x = "Stimmanteil Nationalrats-Schlussabstimmung", y = "Stimmanteil Volksabstimmung", color = "Kongruenz")
+  scale_color_continuous(low = "brown2", high = "chartreuse4",
+                         labels = scales::label_percent()) +
+  labs(title = "Abbildung 3: Stimmanteile der Bundesratsseite in Nationalrats-\nund Volksabstimmungen nach Kongruenz", x = "Stimmanteil Nationalrats-Schlussabstimmung",
+       y = "Stimmanteil Volksabstimmung", color = "Kongruenz")
 
-```
-
-
-```{r}
-#Regression
-
-
-#Basic model
-fit0 = lm(data = votes,  fc_voteshare ~ head_agree)
-summary(fit0)   
-#p = 0.069, negative coefficient, agreement yields -4 percentage points of the vote
-
-
-
-#With control for national council vote
+#Regression (mit Kontrollvariable NR-Abstimmung)
 fit1 = lm(data = votes,  fc_voteshare ~ head_agree + nr_fc)
-summary(fit1)
-#p = 0.032, still -4%
 
-
-#Does the effect differ depending on the department head('s party)?
-fit1a = lm(data = votes,  fc_voteshare ~ head_agree * head_party +  nr_fc)
-summary(fit1a)
-ggfit1a = ggpredict(fit1a, terms = c("head_agree [0, 0.25, 0.5, 0.75, 1]", "head_party"))
-ggplot(ggfit1a, aes(x = x, y = predicted, color = group, )) +
-  geom_line() +
-  scale_color_manual("Partei", values = party_colors) +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.05) + 
-  scale_y_continuous(labels = scales::percent) +
-  scale_x_continuous(labels = scales::percent) +
-  labs(title = "Abbildung XXX", x = "Kongruenz", y = "Stimmanteil BR-Seite") + theme_minimal()
-#Effekt Null (SP) bis gering negativ (Rest), CI's sehr gross
-
-fit1b = lm(data = votes,  fc_voteshare ~ head_agree * head +  nr_fc)
-summary(fit1b)
-ggfit1b = ggpredict(fit1b, terms = c("head_agree [0, 0.25, 0.5, 0.75, 1]", "head"))
-pred = cbind(ggfit1b[which(ggfit1b$x == 0),], ggfit1b[which(ggfit1b$x == 1),])
-colnames(pred)[c(6,8)] = c("head", "predicted1")
-pred$diff = pred$predicted1 - pred$predicted
-pred$conf = pred$conf.high - pred$conf.low
-pred$head = as.character(pred$head)
-pred = pred[order(pred$head), c(6,13,14)]
-ct = votes %>% group_by(head) %>% summarise(n = n())
-pred$n_votes = ct$n
-pred = pred[which(pred$n_votes > 9),]
-#Nur Berset und KKS positiver Effekt (5%), Rest wenig bis stark (Couchepin & Maurer -20%) negativ, aber CIs (15-25%) bei allen grösser als Effekt
-
+#Regression (nur SP und SVP)
+fit1a = lm(data = votes[which(votes$head_party %in% c("SP", "SVP")),],
+           fc_voteshare ~ head_agree + nr_fc)
 
 #Interactions
-fit2 = lm(data = votes,  fc_voteshare ~ head_agree * fac_ref  +  nr_fc)
+fit2 = lm(data = votes,  fc_voteshare ~ head_agree + nr_fc + head_agree * fac_ref)
 fit3 = lm(data = votes,  fc_voteshare ~ head_agree * difficulty +  nr_fc)
 fit4 = lm(data = votes,  fc_voteshare ~ head_agree * ads +  nr_fc)
 fit5 = lm(data = votes,  fc_voteshare ~ head_agree * head_seniority +  nr_fc)
-huxreg(fit0, fit1, fit2, fit3, fit4, fit5, error_format = "({p.value})")
-#Fak Ref wie erwartet negativ, aber p = 0.29
-#Komplexität negativ, p = 0.32
-#Ads wie erwartet negativ, und knapper nichtsignifikant p = 0.088
 
+#Tabellen
+table2 = huxreg(fit1, fit1a, bold_signif = 0.05, number_format = "%.2f", error_pos = "same",
+                statistics = c(N = "nobs", "logLik", "AIC")) %>% 
+  insert_row("Tabelle 2: Einfluss von Kongruenz auf Abstimmungsergebnisse (Stimmanteil Bundesratsseite)",
+             fill = "", colspan = 3) %>%
+  set_bottom_border(row = 1, col = c(1:3))
+table2[2,2:3] = c("Alle Abstimmungen", "Nur SP & SVP")
+table2[4:5,1] = c("Kongruenz", "Stimmanteil Nationalrat")
 
-#Nur fakultative Referenden
-fit2a = lm(data = votes[which(votes$fac_ref == 1),],  fc_voteshare ~ head_agree + nr_fc)
-summary(fit2a)
-#Immer noch negativ und schlechterer p = 0.26
-
-#Nur vorlagen mit überdurchschnittlich vielen Ads
-#ggplot(data = votes, aes(x = ads)) + geom_density()
-fit4a = lm(data = votes[which(votes$ads > mean(votes$ads, na.rm = T)),],  fc_voteshare ~ head_agree + nr_fc)
-summary(fit4a)
-#Still negative and p = 0.018
-
-#Nur BR-Vorlagen
-fit2b = lm(data = votes[which(votes$department_bill == 1),],  fc_voteshare ~ head_agree + nr_fc)
-summary(fit2b)
-#Positive but not significant p = 0.62
-
+table3 = huxreg(fit2, fit3, fit4, fit5, bold_signif = 0.05, number_format = "%.2f",
+                statistics = c(N = "nobs", "logLik", "AIC")) %>%
+  insert_row("und Dienstalter auf Abstimmungsergebnisse",
+             fill = "", colspan = 5) %>%
+insert_row("Tabelle 3: Interaktionseffekt von Kongruenz mit Vorlagentyp, Komplexität, Kampagnenintensität",
+             fill = "", colspan = 5) %>%
+  set_bottom_border(row = 2, col = c(1:5))
+table3[seq(6,24,2),1] = c("Kongruenz", "Stimmanteil Nationalrat", "Fakultatives Referendum",
+                          "Kongruenz * Fak. Ref.", "Komplexität", "Kongruenz * Komplexität",
+                          "Kampagnenintensität", "Kongruenz * Kampagnenintensität",
+                          "Dienstalter", "Kongruenz * Dienstalter")
 ```
-
-
 
 # Resultate und Diskussion
-```{r}
 
+## Mediale Berichterstattung
+
+```{r}
+table1
 ```
 
+Die linke Spalte in Tabelle 2 zeigt die Resultate der ersten Regressionsanalyse. Im Fall von Kongruenz erscheinen im Schnitt 3 Zeitungsartikel weniger, die die zuständige Bundesrätin erwähnen. Der Unterschied ist aber nicht statistisch signifikant (*p* = 0.64). Ein Faktor, der dieses Resultat wahrscheinlich beeinflusst, ist, dass es grundsätzlicher interessanter ist, wenn sich eine Bundesrätin im Abstimmungskampf gegen ihre Partei positionieren muss. Demnach haben die Medien im Fall von Inkongruenz einen grösseren Anreiz, über das bundesrätliche Engagement im Abstimmungskampf zu berichten.
+
+Abbildung 2 zeigt alle Abstimmungen mit Kongruenz-Wert und der Anzahl Zeitungsartikeln, die den zuständigen Bundesrat erwähnen. Bei Vorlagen mit über 100 Artikeln ist der zuständige Bundesrat gekennzeichnet. Bei der Mehrheit der Vorlagen ist das Blocher. Mit durchschnittlich 134 Zeitungsartikeln pro Vorlage erhält er weitaus mehr Berichterstattung als alle anderen Bundesrät:innen, die jeweils im Schnitt in 20 bis 70 Zeitungsartikel pro Abstimmungsvorlage erwähnt werden. Dies ist nicht sehr überraschend, da Christoph Blocher wohl der kontroverseste Bundesrat in der Schweizer Geschichte war und während seiner Amtszeit wahrscheinlich unabhängig von Volksabstimmungen am meisten Berichterstattung erhielt. Das Phänomen hängt aber auch mit einer methodologischen Schwäche zusammen: Nicht alle Zeitungsartikel, die den zuständigen Bundesrat und eine Abstimmung erwähnen, behandeln zwingend das Engagement des Bundesrats für diese Abstimmung. Als Beispiel wurde im Juni 2005 über zwei Vorlagen abgestimmt: Das Schengen-Dublin-Abkommen (zuständige Bundesrätin: Calmey-Rey) und das Gesetz über die eingetragene Partnerschaft gleichgeschlechtlicher Paare (zuständiger Bundesrat: Blocher). Im Vorfeld der Abstimmung wurde Calmey-Rey in 63 und Blocher in 141 Zeitungsartikeln erwähnt, obwohl das Schengen-Dublin-Abkommen die härter umkämpfte Vorlage war. Grund dafür ist, dass sich Blocher entgegen dem Kollegialitätsprinzip gegen das Schengen-Dublin-Abkommen aussprach, was in den Medien rege thematisiert wurde. Von den ihn erwähnenden 141 Zeitungsartikeln beinhalten 103 das Stichwort "Schengen" während nur 23 das Stichwort "Partnerschaft" (oder "partenariat") beinhalten. Die Validität dieser Analyse könnte verbessert werden, wenn nur Zeitungsartikel berücksichtigt werden, die die spezifische Abstimmungsvorlage thematisieren. Die Klassifizierung müsste mithilfe von Machine Learning durchgeführt werden, da insgesamt über 8000 Zeitungsartikel vorliegen und sich die Klassifizierung nicht anhand von strikten Regeln durchführen lässt.
+
+Wenn man Blocher, der stark überdurchschnittlich viel mediale Berichterstattung erhalten hat, aus der Analyse ausschliesst (d.h. die sieben Vorlagen, für die er zuständig war), besteht weiterhin kein signifikanter Kongruenz-Effekt (*p* = 0.66, siehe die rechte Spalte in Tabelle 1). Für die restlichen Bundesrät:innen erscheinen aber im Schnitt 2.5 Zeitungsartikel mehr im Fall von Kongruenz.
+
+```{r, fig.height=5, fig.width=8}
+plot1
+```
+
+## Abstimmungsergebnisse
+
+```{r, fig.height=5, fig.width=6}
+plot2
+```
+
+Abbildung 2 zeigt alle Vorlagen mit Abstimmungsergebnis und Kongruenz, es ist aber kein klarer Trend bezüglich eines möglichen Kongruenz-Effekts ersichtlich. Die erste Spalte in Tabelle 2 auf der nächsten Seite zeigt die Resultate der Regressionsanalyse. Im Fall von Kongruenz erhält die Bundesratsseite zwar 2 Prozentpunkte mehr an Stimmen, der Effekt ist aber auch hier nicht statistisch signifikant (*p* = 0.58). Da Inkongruenz fast nur bei der SP und der SVP auftritt, bietet es sich an, diese gesondert zu betrachten. Wenn man die Regressionsanalyse einschränkt auf Vorlagen, für die SP- oder SVP-Bundesrät:innen zuständig sind, liegt aber weiterhin kein signifikanter Kongruenz-Effekt vor (*p* = 0.29, siehe die zweite Spalte in Tabelle 2). Neben der Beachtung des Kollegialitätsprinzips ist eine mögliche Erklärung für diese Resultate, dass es den Bundesrät:innen wichtiger ist, ihre Geschäfte erfolgreich durch den gesetzgeberischen Prozess (inklusive Volksabstimmung) zu bringen, als ihre eigenen politischen Präferenzen durchzusetzen. Da sich das Verlieren von Volksabstimmungen schlecht auf die Wahrnehmung ihrer Kompetenz auswirken kann, versuchen Bundesrät:innen wahrscheinlich eher, ihre Geschäfte zu Beginn des Gesetzgebungsprozesses inhaltlich zu beeinflussen. Zum Schluss des Prozesses steht dann das erfolgreiche Abschliessen des Geschäfts im Vordergrund.
+
+```{r}
+table2
+```
+
+Da ich keinen signifikanten Kongruenz-Effekt feststellen konnte, ist es auch nicht überraschend, dass die zuvor spekulierten vorlagen- und bundesratsspezifischen Merkmale nicht relevant sind. Tabelle 3 auf der nächsten Seite präsentiert die Resultate der Regression mit Interaktionstermen für Vorlagentyp, Komplexität, Kampagnenintensität und Dienstalter. Einzig der Vorlagentyp ist signifikant (*p* = 0.029). Bei fakultativen Referenden ist der Kongruenz-Effekt - wie erwartet - im Schnitt schwächer als bei anderen Vorlagen.
+
+```{r}
+table3
+```
 
 # Fazit
 
+Bundesrät:innen steht ein gewisser Freiraum zu in Bezug darauf, wie und wie stark sie sich in Abstimmungskämpfen für die Position des Gesamtbundesrats engagieren. Die Analyse hat gezeigt, dass sie sich dabei aber relativ strikt an das Kollegialitätsprinzip halten. Ihr Engagement unterscheidet sich nicht, abhängig davon, ob sie eine Vorlage persönlich unterstützen. Zumindest hat es keine Auswirkung auf die mediale Berichterstattung und auf die Abstimmunsgergebnisse. Im Schweizerischen politischen System stellt sich immer wieder die Frage, wie relevant die Verteilung der Departemente auf Vertreter der verschiedenen Parteien ist. In der Hinsicht auf Volksabstimmungen zumindest scheint sie keine Rolle zu spielen und so ergibt es auch Sinn, dass die Verteilung der Departemente bis anhin sehr konsensuell erfolgt ist. Während diese Analyse einen spezfischen Aspekt des Wirkens der einzelnen Bundesrät:innen untersucht hat besteht darüber hinaus weiterhin grosser Bedarf für die Erforschung des Bundesrats, speziell seiner einzelnen Mitglieder, um uns ein fundierteres Verständnis der Funktionsweise der Schweizer Exekutive zu ermöglichen.
 
 # Quellen
+
+AG KID (Arbeitsgruppe erweiterte Konferenz der Informationsdienste) (2001): Das Engagement von Bundesrat und Bundesverwaltung im Vorfeld von eidgenössischen Abstimmungen. [Link.](https://www.admin.ch/dam/gov/de/Bundesrat/Information/eng_br_d.pdf.download.pdf/eng_br_d.pdf)
+
+Altermatt, U. (2019): Das Bundesratslexikon. Zürich: NZZ Libro.
+
+Année Politique Suisse (2016): APS-Inseratedaten zu den eidg. Abstimmungen. [Link.](https://anneepolitique.swiss/static_files/Codebook%20und%20Informationen%20zu%20den%20%20Abstimmungsinseraten.pdf)
+
+Blum, R. (2004): Die Rolle des Bundesrats vor Volksabstimmungen. Ein Diskursmodell. *Medienwissenschaft Schweiz* (1): 26-28.
+
+Bubenhofer, N., F. Gilardi und R. Nespeca (2025): Swissdox\@LiRI. [Link.](https://liri.linguistik.uzh.ch/wiki/langtech/swissdox/start)
+
+Brandenberger, L. (2025): DemocraSci: A Knowledge Graph on the Swiss Parliament. [Link.](https://brandenbergerlaurence.com/democrasci/)
+
+Bützer, M. und L. Marquis (2002): Public opinion formation in Swiss federal referendums. In Farrell, D. M. und R. Schmitt-Beck (Hrsg.): *Do Political Campaigns matter? Campaign Effects in Elections and Referendums*. London: Routledge (163-182).
+
+gfs.bern (2025): VOX-Analysen: Abstimmungsentscheide erklärt seit 1977. [Link.](https://vox.gfsbern.ch/de/)
+
+Hertig, H. P. (1982): Sind Abstimmungserfolge käuflich? Elemente der Meinungsbildung bei eidgenössischen Abstimmungen. *Schweizerisches Jahrbuch für Politische Wissenschaft* (22): 35-57.
+
+Jaquet, J. M., Sciarini, P. und R. Gava (2022): Can’t buy me votes?: Campaign spending and the outcome of direct democratic votes. *West European Politics* (45): 1-25.
+
+Kriesi, H. (2006): Role of the Political Elite in Swiss Direct-Democratic Votes. *Party Politics* 12(5): 599-622.
+
+Kriesi, H. (2009): Sind Abstimmungsergebnisse käuflich? In: Vatter, A., Varone, F. und F. Sager (Hrsg.): *Demokratie als Leidenschaft. Festschrift für Wolf Linder zum 65. Geburtstag*. Bern: Haupt Verlag (83-106).
+
+Linder, W. und S. Mueller (2017): Schweizerische Demokratie: Institutionen, Prozesse, Perspektiven. Bern: Haupt Verlag.
+
+Milic, T. (2012): Kontextfaktoren der Heuristikverwendung bei Sachabstimmungen. In: Neumann, P., und D. Renger (Hrsg.): *Sachunmittelbare Demokratie im interdisziplinären und internationalen Kontext 2009/2010. Studien zur Sachunmittelbaren Demokratie. Deutschland, Liechtenstein, Österreich, Schweiz und Europa.* Baden-Baden: Nomos (132-152).
+
+Milic, T., Rousselot, B. und A. Vatter (2014): Handbuch der Abstimmungsforschung. Zürich: Verlag Neue Zürcher Zeitung.
+
+Swissvotes (2025): Datensatz. Année Politique Suisse, Universität Bern. [Link.](www.swissvotes.ch)
+
+Vatter, A. (2020): Der Bundesrat. Zürich: NZZ Libro.
+
+Weber, E. (2012): Geld in der direkten Demokratie. Eine Analyse des Einflusses der Werbeausgaben auf die Veränderung der Zustimmung bei 65 eidgenössischen Vorlagen zwischen 1998 und 2011. Lizentiatsarbeit, Universität Zürich.
+
+## Appendix
+
+### Für die Analyse berücksichtigte Zeitschriften
+
+Aargauer Zeitung, Appenzeller Zeitung, Basler Zeitung, Basellandschaftliche Zeitung, Berner Zeitung, Neue Luzerner Zeitung, Nidwaldner Zeitung, Obwaldner Zeitung, Urner Zeitung, Zuger Zeitung, Solothurner Zeitung, St. Galler Tagblatt, Tages-Anzeiger, Thurgauer Zeitung, 24 heures, Tribune de Genève, Le Temps, Le Matin.
+
+```{r}
+#Descriptive Statistics
+st(votes[,c(2:4, 9, 5:8, 19)], summ = c(N ='notNA(x)','mean(x)','sd(x)','min(x)','max(x)'),
+   summ.names = c("N", "Durchschnitt", "Std.Dev.", "Min", "Max"), title = "Tabelle A1: Deskriptive Statistiken",
+   labels = c("Stimmanteil Bundesratsseite", "Kongruenz", "Stimmanteil Nationalrat",
+              "Zeitungsartikel", "Vorlagentyp", "Kampagnenintensität", "Komplexität",
+              "Dienstalter", "Partei des zuständigen Bundesrats"))
+```

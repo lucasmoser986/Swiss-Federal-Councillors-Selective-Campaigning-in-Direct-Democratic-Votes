@@ -1,5 +1,5 @@
 ---
-title: "Data Preprocessing File"
+title: "Data Preprocessing File. Not to be rendered."
 format: html
 editor: visual
 lang: de
@@ -116,7 +116,8 @@ parlvotes$vote.decision = case_match(parlvotes$vote.decision, "Yes" ~ 1, "No" ~ 
 parlvotes = na.omit(parlvotes)
 parlvotes$name = paste(parlvotes$p.first_name, parlvotes$p.last_name)
 
-members = get_data(table = "MemberCouncilHistory", Language = "DE", silent = T)[,c(4,7,8,22,36)]
+members = get_data(table = "MemberCouncilHistory", Language = "DE",
+                   silent = T)[,c(4,7,8,22,36)]
 members = members[-which(members$DateLeaving < as.Date("2002-01-01")),]
 members$PartyName = case_match(members$PartyName, "Bürgerlich-Demokratische Partei Schweiz" ~ "BDP",
                                c("Christlichdemokratische Volkspartei der Schweiz", "Die Mitte") ~ "CVP",
@@ -126,6 +127,7 @@ members$PartyName = case_match(members$PartyName, "Bürgerlich-Demokratische Par
                                "Sozialdemokratische Partei der Schweiz" ~ "SP")
 members = members[which(!is.na(members$PartyName)),]
 members$name = paste(members$FirstName, members$LastName)
+members = members[which(!duplicated(members$name)),]
 parlvotes = left_join(parlvotes, members[,c(6,4)], join_by(name == name))
 #party switchers / missing / svp-bdp
 parlvotes = parlvotes %>% mutate(PartyName = ifelse(name %in% c("Hansjörg Hassler","Hans Grunder",
@@ -142,12 +144,11 @@ for (i in 1:length(votes$id)) {
     pv = parlvotes[which(votes$bill_id[i] == parlvotes$pursuit.number &
                            votes$head_party[i] == parlvotes$PartyName),]
     votes$head_agree[i] = sum(pv$vote.decision) / length(pv$vote.decision)
-    if (votes$popular_initiative[i] == 1 & votes$p_fc[i] == 0) {
-      votes$head_agree[i] = 1 - votes$head_agree[i]
-    }
   } else {
-    votes$head_agree[i] = missing_bills$head_agree[which(votes$bill_id[i] == missing_bills$bill_id &
-                                                           votes$nr_yes[i] == missing_bills$nr_yes)]
+    votes$head_agree[i] = missing_bills$head_agree[which(votes$bill_id[i] ==
+                                                           missing_bills$bill_id &
+                                                           votes$nr_yes[i] ==
+                                                           missing_bills$nr_yes)]
   }
 } 
 
